@@ -1,0 +1,246 @@
+units:
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx +4
+  py: ky +4
+  $default_height: 'cx'
+  $default_width: 'cy'
+
+
+points:
+  zones:
+    matrix:
+      key:
+        padding: 1ky
+        spread: 1kx
+      columns:
+        pinky:
+        ring:
+          key:
+            stagger: 13
+        middle:
+          key:
+            stagger: 8
+        index:
+          key:
+            stagger: -8
+        inner:
+          key:
+            stagger: -2.5
+      rows:
+        bottom:
+        home:
+        top:
+    thumbs:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [0, -px]
+      columns:
+        layer:
+          key.splay: -15
+        space:
+          key:
+            width: 1.5kx
+            splay: 75
+            shift: [7,-5]
+      rows:
+        cluster:
+  mirror: &mirror
+    ref: matrix_inner_top
+    distance: 8px
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  board:
+    - what: polygon
+      points:
+        - ref: matrix_pinky_top
+          shift: [-0.5px,0.5py]
+        - ref: matrix_pinky_top
+          shift: [0.5px-4,0.5py]
+        - ref: matrix_ring_top
+          shift: [-0.5px,0.5py]
+        - ref: matrix_ring_top
+          shift: [0.5px-4,0.5py]
+        - ref: matrix_middle_top
+          shift: [-0.5px,0.5py]
+        - ref: matrix_middle_top
+          shift: [0.5px,0.5py]
+        - ref: matrix_index_top
+          shift: [-0.5px+4,0.5py]
+        - ref: matrix_index_top
+          shift: [0.5px,0.5py]
+        - ref: matrix_inner_top
+          shift: [-0.5px+4,0.5py]
+        - ref: matrix_inner_top
+          shift: [1.63px,0.5py]
+        - ref: matrix_inner_bottom
+          shift: [1.63px,0]  
+        - ref: thumbs_space_cluster
+          shift: [0.75px,-0.5py]
+        - ref: thumbs_space_cluster
+          shift: [-0.75px,-0.5py]
+        - ref: thumbs_layer_cluster
+          shift: [0.5px,-0.5py]
+        - ref: thumbs_layer_cluster
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_index_bottom
+          shift: [0.5px-4,-0.5py]
+        - ref: matrix_index_bottom
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_middle_bottom
+          shift: [0.5px-4,-0.5py]
+        - ref: matrix_middle_bottom
+          shift: [-0.5px+4,-0.5py]
+        - ref: matrix_ring_bottom
+          shift: [0.5px,-0.5py]
+        - ref: matrix_ring_bottom
+          shift: [-0.5px+4,-0.5py]
+        - ref: matrix_pinky_bottom
+          shift: [0.5px,-0.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-0.5px,-0.5py]
+      fillet: 2
+    - what: polygon
+      points:
+        - ref: mirror_matrix_pinky_top
+          shift: [-0.5px,0.5py]
+        - ref: mirror_matrix_pinky_top
+          shift: [0.5px-4,0.5py]
+        - ref: mirror_matrix_ring_top
+          shift: [-0.5px,0.5py]
+        - ref: mirror_matrix_ring_top
+          shift: [0.5px-4,0.5py]
+        - ref: mirror_matrix_middle_top
+          shift: [-0.5px,0.5py]
+        - ref: mirror_matrix_middle_top
+          shift: [0.5px,0.5py]
+        - ref: mirror_matrix_index_top
+          shift: [-0.5px+4,0.5py]
+        - ref: mirror_matrix_index_top
+          shift: [0.5px,0.5py]
+        - ref: mirror_matrix_inner_top
+          shift: [-0.5px+4,0.5py]
+        - ref: mirror_matrix_inner_top
+          shift: [1.63px,0.5py]
+        - ref: mirror_matrix_inner_bottom
+          shift: [1.63px,0]  
+        - ref: mirror_thumbs_space_cluster
+          shift: [0.75px,-0.5py]
+        - ref: mirror_thumbs_space_cluster
+          shift: [-0.75px,-0.5py]
+        - ref: mirror_thumbs_layer_cluster
+          shift: [0.5px,-0.5py]
+        - ref: mirror_thumbs_layer_cluster
+          shift: [-0.5px,-0.5py]
+        - ref: mirror_matrix_index_bottom
+          shift: [0.5px-4,-0.5py]
+        - ref: mirror_matrix_index_bottom
+          shift: [-0.5px,-0.5py]
+        - ref: mirror_matrix_middle_bottom
+          shift: [0.5px-4,-0.5py]
+        - ref: mirror_matrix_middle_bottom
+          shift: [-0.5px+4,-0.5py]
+        - ref: mirror_matrix_ring_bottom
+          shift: [0.5px,-0.5py]
+        - ref: mirror_matrix_ring_bottom
+          shift: [-0.5px+4,-0.5py]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [0.5px,-0.5py]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [-0.5px,-0.5py]
+      fillet: 2
+  combo:
+    - name: board
+    - operation: subtract
+      name: keys
+pcbs:
+  squanch:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      left_n!n:
+        what: ceoloide/mcu_supermini_nrf52840
+        where:
+          ref: matrix_inner_top
+          shift: [px,-8]
+      right_n!n:
+        what: ceoloide/mcu_supermini_nrf52840
+        where:
+          ref: mirror_matrix_inner_top
+          shift: [px,-8]
+      power_left:
+        what: ceoloide/battery_connector_jst_ph_2
+        where:
+           ref: matrix_inner_bottom
+           shift: [px,0]
+           rotate: 90
+      power_right:
+        what: ceoloide/battery_connector_jst_ph_2
+        where:
+           ref: mirror_matrix_inner_bottom
+           shift: [px,0]
+           rotate: 90
+      power_switch_left:
+        what: infused-kim/switch_power
+        params:
+          side: B
+        where:
+           ref: matrix_inner_home
+           shift: [1.545px,0]
+      power_switch_right:
+        what: infused-kim/switch_power
+        params:
+          side: B
+        where:
+           ref: mirror_matrix_inner_home
+           shift: [1.545px,0]    
+           rotate: 180 
+      reset_switch_left:
+        what: infused-kim/switch_reset
+        params:
+          side: B
+        where:
+           ref: matrix_inner_top
+           shift: [1.545px,0]
+      reset_switch_right:
+        what: infused-kim/switch_reset
+        params:
+          side: B
+        where:
+           ref: mirror_matrix_inner_top
+           shift: [1.545px,0]    
+           rotate: 180      
+cases:
+  bottom:
+    - name: board
+      extrude: 1
