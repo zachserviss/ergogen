@@ -3,8 +3,8 @@ units:
   kx: cx
   ky: cy
   # Padding Variables
-  px: kx +4
-  py: ky +4
+  px: kx +6
+  py: ky +6
   $default_height: 'cx'
   $default_width: 'cy'
 
@@ -13,7 +13,7 @@ points:
   zones:
     matrix:
       anchor:
-        shift: [60, -130]
+        shift: [40, -125]
       key:
         padding: 1ky
         spread: 1kx
@@ -82,21 +82,21 @@ outlines:
         - ref: matrix_pinky_top
           shift: [-0.5px,0.5py]
         - ref: matrix_pinky_top
-          shift: [0.5px-4,0.5py]
+          shift: [0.5px-6,0.5py]
         - ref: matrix_ring_top
           shift: [-0.5px,0.5py]
         - ref: matrix_ring_top
-          shift: [0.5px-4,0.5py]
+          shift: [0.5px-6,0.5py]
         - ref: matrix_middle_top
           shift: [-0.5px,0.5py]
         - ref: matrix_middle_top
           shift: [0.5px,0.5py]
         - ref: matrix_index_top
-          shift: [-0.5px+4,0.5py]
+          shift: [-0.5px+6,0.5py]
         - ref: matrix_index_top
           shift: [0.5px,0.5py]
         - ref: matrix_inner_top
-          shift: [-0.5px+4,0.5py]
+          shift: [-0.5px+6,0.5py]
         - ref: matrix_inner_top
           shift: [1.63px,0.5py]
         - ref: matrix_inner_bottom
@@ -110,17 +110,17 @@ outlines:
         - ref: thumbs_layer_cluster
           shift: [-0.5px,-0.5py]
         - ref: matrix_index_bottom
-          shift: [0.5px-4,-0.5py]
+          shift: [0.5px-6,-0.5py]
         - ref: matrix_index_bottom
           shift: [-0.5px,-0.5py]
         - ref: matrix_middle_bottom
-          shift: [0.5px-4,-0.5py]
+          shift: [0.5px-6,-0.5py]
         - ref: matrix_middle_bottom
-          shift: [-0.5px+4,-0.5py]
+          shift: [-0.5px+6,-0.5py]
         - ref: matrix_ring_bottom
           shift: [0.5px,-0.5py]
         - ref: matrix_ring_bottom
-          shift: [-0.5px+4,-0.5py]
+          shift: [-0.5px+6,-0.5py]
         - ref: matrix_pinky_bottom
           shift: [0.5px,-0.5py]
         - ref: matrix_pinky_bottom
@@ -131,21 +131,21 @@ outlines:
         - ref: mirror_matrix_pinky_top
           shift: [-0.5px,0.5py]
         - ref: mirror_matrix_pinky_top
-          shift: [0.5px-4,0.5py]
+          shift: [0.5px-6,0.5py]
         - ref: mirror_matrix_ring_top
           shift: [-0.5px,0.5py]
         - ref: mirror_matrix_ring_top
-          shift: [0.5px-4,0.5py]
+          shift: [0.5px-6,0.5py]
         - ref: mirror_matrix_middle_top
           shift: [-0.5px,0.5py]
         - ref: mirror_matrix_middle_top
           shift: [0.5px,0.5py]
         - ref: mirror_matrix_index_top
-          shift: [-0.5px+4,0.5py]
+          shift: [-0.5px+6,0.5py]
         - ref: mirror_matrix_index_top
           shift: [0.5px,0.5py]
         - ref: mirror_matrix_inner_top
-          shift: [-0.5px+4,0.5py]
+          shift: [-0.5px+6,0.5py]
         - ref: mirror_matrix_inner_top
           shift: [1.63px,0.5py]
         - ref: mirror_matrix_inner_bottom
@@ -159,17 +159,17 @@ outlines:
         - ref: mirror_thumbs_layer_cluster
           shift: [-0.5px,-0.5py]
         - ref: mirror_matrix_index_bottom
-          shift: [0.5px-4,-0.5py]
+          shift: [0.5px-6,-0.5py]
         - ref: mirror_matrix_index_bottom
           shift: [-0.5px,-0.5py]
         - ref: mirror_matrix_middle_bottom
-          shift: [0.5px-4,-0.5py]
+          shift: [0.5px-6,-0.5py]
         - ref: mirror_matrix_middle_bottom
-          shift: [-0.5px+4,-0.5py]
+          shift: [-0.5px+6,-0.5py]
         - ref: mirror_matrix_ring_bottom
           shift: [0.5px,-0.5py]
         - ref: mirror_matrix_ring_bottom
-          shift: [-0.5px+4,-0.5py]
+          shift: [-0.5px+6,-0.5py]
         - ref: mirror_matrix_pinky_bottom
           shift: [0.5px,-0.5py]
         - ref: mirror_matrix_pinky_bottom
@@ -206,46 +206,46 @@ pcbs:
         what: ceoloide/mcu_nice_nano
         params:
           reverse_mount: true
+          P1: CS
+          P2: SCK
+          P3: MOSI
         where:
           ref: matrix_inner_top
-          shift: [px,-8]
+          shift: [px,-10]
       right_n!n:
         what: ceoloide/mcu_nice_nano
         params:
           reverse_mount: true
+          P1: CS
+          P2: SCK
+          P3: MOSI
         where:
           ref: mirror_matrix_inner_top
-          shift: [px,-8]
+          shift: [px,-10]
       left_n!v:
         what: ceoloide/display_nice_view
         where:
           ref: matrix_inner_top
-          shift: [px,-10]
+          shift: [px,-14]
         params:
-          CS: RAW
-          SCK: P2
-          MOSI: P3
       right_n!v:   
         what: ceoloide/display_nice_view
         where:
           ref: mirror_matrix_inner_top
-          shift: [px,-10]   
-        params:
-          CS: RAW
-          SCK: P2
-          MOSI: P3  
+          shift: [px,-14]   
+        params: 
       power_left:
         what: ceoloide/battery_connector_jst_ph_2
         where:
-           ref: matrix_inner_bottom
-           shift: [px,0]
-           rotate: 90
+           ref: matrix_inner_top
+           shift: [px,8]
+           rotate: 0
       power_right:
         what: ceoloide/battery_connector_jst_ph_2
         where:
-           ref: mirror_matrix_inner_bottom
-           shift: [px,0]
-           rotate: 90
+           ref: mirror_matrix_inner_top
+           shift: [px,8]
+           rotate: 0
       power_switch_left:
         what: infused-kim/switch_power
         params:
@@ -277,56 +277,90 @@ pcbs:
            shift: [1.545px,0]    
            rotate: 180      
       hole_pinky_top_left:
-        what: ceoloide/mounting_hole_npth
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_pinky_top]
           shift: [0.5kx, 0.5ky]
       hole_pinky_bottom_left:
-        what: ceoloide/mounting_hole_npth
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [matrix_pinky_bottom]
           shift: [0.5kx, 0.5ky]   
-      hole_middle_left:
-        what: ceoloide/mounting_hole_npth
+      hole_index_left_top:
+        what: ceoloide/mounting_hole_plated
         where:
-          ref: [matrix_middle_bottom]
+          ref: [matrix_index_top]
           shift: [0.5kx, 0.5ky]    
-      hole_inner_top_left:
-        what: ceoloide/mounting_hole_npth
-        where:
-          ref: [matrix_inner_top]
-          shift: [0.5kx, 0.5ky]
       hole_thumb_left:
-        what: ceoloide/mounting_hole_npth
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [thumbs_space_cluster]
           shift: [-0.5kx, -0.5ky]    
       hole_pinky_top_right:
-        what: ceoloide/mounting_hole_npth
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [mirror_matrix_pinky_top]
           shift: [0.5kx, 0.5ky]
       hole_pinky_bottom_right:
-        what: ceoloide/mounting_hole_npth
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [mirror_matrix_pinky_bottom]
           shift: [0.5kx, 0.5ky]   
-      hole_middle_right:
-        what: ceoloide/mounting_hole_npth
+      hole_index_right_top:
+        what: ceoloide/mounting_hole_plated
         where:
-          ref: [mirror_matrix_middle_bottom]
+          ref: [mirror_matrix_index_top]
           shift: [0.5kx, 0.5ky]    
-      hole_inner_top_right:
-        what: ceoloide/mounting_hole_npth
-        where:
-          ref: [mirror_matrix_inner_top]
-          shift: [0.5kx, 0.5ky]
       hole_thumb_right:
-        what: ceoloide/mounting_hole_npth
+        what: ceoloide/mounting_hole_plated
         where:
           ref: [mirror_thumbs_space_cluster]
-          shift: [-0.5kx, -0.5ky]                               
+          shift: [-0.5kx, -0.5ky]  
+
+      hole_screen_cover_upper_left:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: [matrix_inner_top]
+          shift: [kx-1.35, 9]
+      hole_screen_cover_upper_right:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: [matrix_inner_top]
+          shift: [kx-1.35+14.781,9]
+      hole_screen_cover_bottom:
+        what: ceoloide/mounting_hole_plated
+        where:
+          ref: [matrix_inner_top]
+          shift: [kx+14.781-3.895-1.35, 9-49.898]    
+
+
+      text_left:
+        what: ceoloide/utility_text
+        where:
+          ref: matrix_inner_home
+          rotate: 270
+          shift: [0.5px,-4]
+        params:
+          text: "Warning: This machine kills fascists" 
+          width: 2
+          height: 2
+          bold: true     
+          thickness: 1       
+      text_right:
+        what: ceoloide/utility_text
+        where:
+          ref: mirror_matrix_inner_home
+          rotate: 270
+          shift: [0.5px,-4]
+        params:
+          text: "Warning: This machine kills fascists" 
+          width: 2
+          height: 2
+          bold: true     
+          thickness: 1                   
 cases:
   bottom:
     - name: board
       extrude: 1
+
+        
